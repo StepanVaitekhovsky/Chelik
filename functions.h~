@@ -1,0 +1,7 @@
+
+#pragma once
+#include <string>
+
+void some_print(int count_start, int count_end, std::string symbol);
+
+void rast(int rast);

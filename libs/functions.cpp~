@@ -1,0 +1,30 @@
+/*
+ * Chelik - аналог cowsay для русскоязычных хакеров.
+ * Copyright (C) 2026  Stepan Vaitekhovsky
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <iostream>
+#include <string>
+#include "functions.h"
+
+void some_print(int count_start, int count_end, std::string symbol){
+  for (int i = count_start; i < count_end; i++){
+    std::cout << symbol;
+  }
+}
+void rast(int rast){
+  some_print(0, rast, " ");
+}

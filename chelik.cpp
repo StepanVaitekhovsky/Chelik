@@ -19,61 +19,63 @@
 #include <iostream>
 #include <string>
 #include "utf8.h"
+#include "libs/poses.h"
+#include "libs/functions.h"
+#include "libs/flags.h"
+#include "libs/colors.h"
 
-using namespace std;
+int main(int argc, char* argv[]){
+  std::string text;
+  Args args = parse_args(argc, argv);
+  if (args.show_help){
+    show_help();
+    return 0;
+  }
+  
+  int dist = utf8::distance(args.message.begin(), args.message.end());
+  Poses poses(dist);
+  
+  if (args.list_poses){
+    poses.list_poses();
+    return 0;
+  }
 
-void rast(int rast){
-  for (int i = 0; i < rast; i++){
-    cout << " ";
+  Colors::color_parser(args.color);
+  std::cout << " ";
+  some_print(0, dist, "-");
+  std::cout << std::endl;
+  std::cout << "/";
+  some_print(0, dist, " ");
+  std::cout << "\\" << std::endl;
+  std::cout << "|" << args.message << "|" << std::endl;
+  std::cout << "\\";
+  some_print(0, dist, " ");  
+  std::cout << "/" << std::endl << " ";
+  some_print(0, dist, "-");
+  std::cout << std::endl;
+  some_print(1, dist, " ");
+  std::cout << "\\/" << std::endl;
+  switch (args.pose){
+  case 0:
+    poses.normal();
+    break;
+  case 1:
+    poses.died();
+    break;
+  case 2:
+    poses.funny();
+    break;
+  case 3:
+    poses.sad();
+    break;
+  case 4:
+    poses.surprised();
+    break;
+  case 5:
+    poses.suspect();
+    break;
   }
-}
-
-int main(void){
-  string text;
-  getline(cin, text);
-  cout << text + "\n";
-  cout << " ";
-  int dist = utf8::distance(text.begin(), text.end());
-  for (int i = 0; i < dist; i++){
-    cout << "-";
-  }
-  cout << endl;
-  cout << "/";
-  for (int i = 0; i < dist; i++){
-    cout << " ";
-  }
-  cout << "\\" << endl;
-  cout << "|" << text << "|" << endl;
-  cout << "\\";
-  for (int i = 0; i < dist; i++){
-    cout << " ";
-  }
-  cout << "/" << endl << " ";
-  for (int i = 0; i < dist; i++){
-    cout << "-";
-  }
-  cout << endl;
-  for (int i = 1; i < dist; i++){
-    cout << " ";
-  }
-  cout << "\\/" << endl;
-  rast(dist);
-  cout << " -----" << endl;
-  rast(dist);
-  cout << "/ - - \\" << endl;
-  rast(dist);
-  cout << "\\  -  /" << endl;
-  rast(dist);
-  cout << " -----" << endl;
-  rast(dist);
-  cout << "  |  " << endl;
-  rast(dist);
-  cout << " /|\\" << endl;
-  rast(dist);
-  cout << "/ | \\" << endl;
-  rast(dist);
-  cout << " / \\" << endl;
-  rast(dist);
-  cout << "/   \\" << endl; 
+  Colors::resume_color();
+  return 0;
 }
 
