@@ -28,6 +28,16 @@ void Colors::color_parser(std::string select){
   else if (select == "orange")  std::cout << orange;
   }
 
+bool Colors::is_valid_color(std::string color){
+  static const char* colors[] = {"red", "dark-red", "blue", "dark-blue", "green", "dark-green", "purple", "dark-purple", "white", "yellow", "orange"};
+  int count = sizeof(colors) / sizeof(colors[0]);
+
+  for(int i = 0; i < count; ++i){
+    if(color == colors[i]){ return true;}
+  }
+  return false;
+}
+
 void Colors::resume_color(){
   std::cout << "\033[0m";
 }

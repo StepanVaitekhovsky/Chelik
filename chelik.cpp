@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <stdexcept>
 #include <iostream>
 #include <string>
 #include "utf8.h"
@@ -39,7 +40,16 @@ int main(int argc, char* argv[]){
     poses.list_poses();
     return 0;
   }
+  if(!(Colors::is_valid_color(args.color))){
+    std::cerr << "Error: invalid color" << std::endl;
+    return 0;
+  }
 
+  if(args.pose > 5){
+    std::cerr << "Error: invalid pose" << std::endl;
+    return 0;
+  }
+  
   Colors::color_parser(args.color);
   std::cout << " ";
   some_print(0, dist, "-");

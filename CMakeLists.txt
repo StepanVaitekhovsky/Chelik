@@ -12,3 +12,6 @@ add_executable(chelik
 	libs/colors.cpp
 	chelik.cpp
 	)
+
+enable_testing()
+add_subdirectory(tests)
